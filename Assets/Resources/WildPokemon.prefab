@@ -47,14 +47,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pokemonHealth: 150
   pkmnSR: {fileID: 9095003831237778889}
-  pokeTexNumber: 0
+  pokeTexNumber: 1
   pkRender: {fileID: 9095003831237778891}
-  hurtSprite: {fileID: -2466796726214357538, guid: 70e6f9d567829514b8cea2989472529d,
-    type: 3}
-  idleSprite: {fileID: 7551071871341178678, guid: 70e6f9d567829514b8cea2989472529d,
-    type: 3}
+  idleSprite: {fileID: 0}
   player: {fileID: 0}
   fightingGui: {fileID: 0}
+  pkmnRandomizer: {fileID: 0}
 --- !u!61 &9095003831127771308
 BoxCollider2D:
   m_ObjectHideFlags: 0

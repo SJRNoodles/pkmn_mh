@@ -12,10 +12,17 @@ public class WildPokemonScript : MonoBehaviour
     public Sprite idleSprite;
     public GameObject player;
     public GameObject fightingGui;
+    public GameObject pkmnRandomizer;
+    public int dexNumb;
+    private string specialMove = "Quick Attack";
 
     void Start(){
         player = GameObject.Find("player");
         fightingGui = GameObject.FindGameObjectWithTag("FightUI");
+        pkmnRandomizer = GameObject.FindGameObjectWithTag("Pokedex");
+        dexNumb = Random.Range(0, pkmnRandomizer.GetComponent<Poketexdex>().pokeDex.Length);
+        idleSprite = pkmnRandomizer.GetComponent<Poketexdex>().pokeDex[dexNumb];
+        pkRender.GetComponent<SpriteRenderer>().sprite = idleSprite;
     }
 
     void endBattle(){
@@ -24,8 +31,14 @@ public class WildPokemonScript : MonoBehaviour
         Destroy(gameObject);
     }
     void sendDatatoPlr(){
-        // TODO: Add customizable wild pokemon moves.
-        StartCoroutine(player.GetComponent<PlayerScript>().getDataFromCaughtPokemon(pokeTexNumber,pokemonHealth.ToString(),"basicMove","Quick Attack","Spark","5")); 
+        // Not a  lot of moves programmed in so it's like this for now.
+        if (pkmnRandomizer.GetComponent<Poketexdex>().pokeTypeDex[dexNumb] == "electric"){
+            specialMove = "Spark";
+        }
+        if (pkmnRandomizer.GetComponent<Poketexdex>().pokeTypeDex[dexNumb] == "water"){
+            specialMove = "Water Gun";
+        }
+        StartCoroutine(player.GetComponent<PlayerScript>().getDataFromCaughtPokemon(pokeTexNumber,pokemonHealth.ToString(),"basicMove","Quick Attack",specialMove,"5")); 
     }
     public IEnumerator Caught(){
         //Happens when the Pokemon is currently being caught.

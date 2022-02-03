@@ -5,6 +5,7 @@ using UnityEngine;
 public class Poketexdex : MonoBehaviour
 {
     public Sprite[] pokeDex;
+    public string[] pokeTypeDex;
     // Start is called before the first frame update
     void Start()
     {
