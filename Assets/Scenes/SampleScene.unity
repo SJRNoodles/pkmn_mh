@@ -6493,7 +6493,7 @@ GameObject:
   - component: {fileID: 227835058}
   m_Layer: 0
   m_Name: PoketextureDex
-  m_TagString: Untagged
+  m_TagString: Pokedex
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6513,6 +6513,9 @@ MonoBehaviour:
   pokeDex:
   - {fileID: 7551071871341178678, guid: 70e6f9d567829514b8cea2989472529d, type: 3}
   - {fileID: 270323714563605988, guid: c659654b8ca13fc409a15e9eb0bbefbd, type: 3}
+  pokeTypeDex:
+  - electric
+  - water
 --- !u!4 &227835059
 Transform:
   m_ObjectHideFlags: 0
