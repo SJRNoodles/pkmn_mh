@@ -56,6 +56,9 @@ public class WildPokemonScript : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.5f);
 
         if(pokemonHealth <= 0){
+            gameObject.transform.Find("Render").GetComponent<SpriteRenderer>().enabled = false;
+            StartCoroutine(fightingGui.transform.Find("FightUI").GetComponent<FightScript>().winSaD("faint"));
+            yield return new WaitForSecondsRealtime(5.0f);
             player.GetComponent<PlayerScript>().battling = false;
             fightingGui.transform.Find("FightUI").gameObject.SetActive(false);
             Destroy(gameObject);

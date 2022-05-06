@@ -11,7 +11,9 @@ public class FightScript : MonoBehaviour
     public Canvas ui;
     public GameObject movesTab;
     public AudioSource selectionAudio;
+    public AudioSource winAudio;
     public AudioSource totemAudio;
+    public AudioSource battleAudio;
     public ParticleSystem totemPart;
 
     public ParticleSystem waterType;
@@ -31,6 +33,25 @@ public class FightScript : MonoBehaviour
     // Start is called before the first frame update
     public IEnumerator wait1s(){
         yield return new WaitForSecondsRealtime(1.0f); // Waits 1 seconds.
+    }
+
+    public IEnumerator winSaD(string type){
+        battleAudio.Stop();
+        winAudio.Play();
+        if (type == "caught") {
+            moveText.enabled = true;
+            moveText.text = "Wild Pokemon has been caught!"; 
+        }
+        if (type == "faint") {
+            moveText.enabled = true;
+            moveText.text = "Wild Pokemon has fainted"; 
+        }
+        yield return new WaitForSecondsRealtime(4.0f);
+        moveText.enabled = false; 
+        if (type=="caught") {
+            pokemon = player.GetComponent<PlayerScript>().pokemonFighting;
+            StartCoroutine(pokemon.GetComponent<WildPokemonScript>().Caught());
+        }
     }
 
     public IEnumerator screenShake(int i = 0){
@@ -62,7 +83,6 @@ public class FightScript : MonoBehaviour
     }
 
     public void Catch(){
-        pokemon = player.GetComponent<PlayerScript>().pokemonFighting;
         if (scanInventory("pokeball",0,false,true) == true) {
             // We can catch the Wild Pokemon, since we have Pokeballs.
             // Lets start a coruntine on the Wild Pokemon script so we can let it know it is currently being caught.
@@ -70,8 +90,7 @@ public class FightScript : MonoBehaviour
                 // Get the mission and delete it if its on the list.
                 misList.GetComponent<Missions>().scanMisList("Catch a pokemon",0,false,true);
             }
-
-            StartCoroutine(pokemon.GetComponent<WildPokemonScript>().Caught());
+            StartCoroutine(winSaD("caught"));
         }
     }
 

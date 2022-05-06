@@ -107,13 +107,13 @@ public class PlayerScript : MonoBehaviour
             pokeNoise.gameObject.SetActive(false);
             mypkmnSR.enabled = false;
             if(rolling==false){
-                transform.position = new Vector3(transform.position.x+Input.GetAxis("Horizontal")*speed*Time.deltaTime,transform.position.y + Input.GetAxis("Vertical")*speed*Time.deltaTime,-10);
+                transform.position = new Vector3(transform.position.x+Input.GetAxis("Horizontal")*speed*Time.deltaTime,transform.position.y + Input.GetAxis("Vertical")*speed*Time.deltaTime,-1);
             }else{
                 if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1){
                     rolling=false;
                     reload = true;
                 }
-                transform.position = new Vector3(transform.position.x+Input.GetAxis("Horizontal")*speed*2*Time.deltaTime,transform.position.y + Input.GetAxis("Vertical")*speed*3*Time.deltaTime,-10);
+                transform.position = new Vector3(transform.position.x+Input.GetAxis("Horizontal")*speed*2*Time.deltaTime,transform.position.y + Input.GetAxis("Vertical")*speed*3*Time.deltaTime,-1);
             }
        }
     }
